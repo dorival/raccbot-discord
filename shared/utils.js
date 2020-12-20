@@ -38,9 +38,34 @@ function tryWin(chanceOfWinning = 50) {
   return d <= chanceOfWinning;
 }
 
+function sampleItemsFromArray(array = [], quantity = 1) {
+  const arrayCopy = [...array];
+  for (let currentIndex = 0, len = arrayCopy.length; currentIndex < len; currentIndex++) {
+    const randomIndex = randomBetween(0, len - 1);
+    let currentElement = arrayCopy[currentIndex];
+    let randomElement = arrayCopy[randomIndex];
+    arrayCopy[currentIndex] = randomElement;
+    arrayCopy[randomIndex] = currentElement;
+  }
+
+  arrayCopy.length = quantity;
+
+  return arrayCopy;
+}
+
+/**
+ * Pad a number with zeros
+ *
+ * @param {number} num Number you are tring to pad
+ * @param {*} places Length of the pad
+ */
+const pad = (num, places) => String(num).padStart(places, '0')
+
 module.exports = {
+  sampleItemsFromArray,
   randomBetween,
   randomItem,
   flipCoin,
-  tryWin
+  tryWin,
+  pad
 }
