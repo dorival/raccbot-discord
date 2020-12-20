@@ -9,7 +9,6 @@ Object.keys(botCommands).map(key => {
   bot.commands.set(botCommands[key].name, botCommands[key]);
 });
 
-
 bot.login(TOKEN);
 
 bot.on('ready', () => {
@@ -19,7 +18,6 @@ bot.on('ready', () => {
 bot.on('message', msg => {
   const args = msg.content.split(/ +/);
   const command = args.shift().toLowerCase();
-  console.info(`Called command: ${command} with arguments: ${args.join(',')}`);
 
   if (!bot.commands.has(command)){
     return;
