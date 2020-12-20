@@ -1,10 +1,11 @@
+const random = require('random');
+const _ = require('underscore');
+
 /**
  * Returns a random number between min (inclusive) and max (inclusive).
  */
-function randomBetween(min, max) {  
-  return Math.floor(
-    Math.random() * (max - min + 1) + min
-  )
+function randomBetween(minimum, maximum) {  
+  return random.int(min = minimum, max = maximum);
 }
 
 /**
@@ -18,14 +19,14 @@ function randomItem(arrayReference) {
     return 0;
   }
 
-  return arrayReference[randomBetween(0, arrayReference.length - 1)];
+  return arrayReference[random.int(min = 0, max = arrayReference.length - 1)];
 }
 
 /**
  * Get a random `true`/`false`.
  */
 function flipCoin() {
-  return randomBetween(0, 1) === 0;
+  return random.boolean();
 }
 
 /**
@@ -34,37 +35,41 @@ function flipCoin() {
  * @param {number} chanceOfWinning 0 to 100 chance. Defaults to 50 (50% chance of winning).
  */
 function tryWin(chanceOfWinning = 50) {
-  const d = Math.random() * 100;
+  const d = random.int(min = 0, max = 100);
   return d <= chanceOfWinning;
 }
 
+/**
+ * Randomly pick items from the a array, returning a new one.
+ * 
+ * @param {array} array Array to sample
+ * @param {number} quantity Number of samples to take
+ */
 function sampleItemsFromArray(array = [], quantity = 1) {
-  const arrayCopy = [...array];
-  for (let currentIndex = 0, len = arrayCopy.length; currentIndex < len; currentIndex++) {
-    const randomIndex = randomBetween(0, len - 1);
-    let currentElement = arrayCopy[currentIndex];
-    let randomElement = arrayCopy[randomIndex];
-    arrayCopy[currentIndex] = randomElement;
-    arrayCopy[randomIndex] = currentElement;
-  }
-
-  arrayCopy.length = quantity;
-
-  return arrayCopy;
+  const shuffled = _.shuffle(array);
+  return _.first(shuffled, quantity);
 }
 
 /**
  * Pad a number with zeros
  *
  * @param {number} num Number you are tring to pad
- * @param {*} places Length of the pad
+ * @param {number} places Length of the pad
  */
-const pad = (num, places) => String(num).padStart(places, '0')
+function pad(num, places) {
+  return String(num).padStart(places, '0');
+}
 
 /**
+ * Replace all substrings with a new one
  * 
- * @param {*} sentense 
- * @param {*} mapObj 
+ * @param {string} sentence The string to replace
+ * @param {object[]} mapObj Array of objects containing the substring and its replacement text
+ * @example
+ * replaceAll('My name is %robert% and I have %age% years.', [
+ *  { "%name%": 'Robert' },
+ *  { "%age%": '26' }
+ * ])
  */
 function replaceAll(sentence, mapObj){
   return mapObj.reduce((prev, current) =>
