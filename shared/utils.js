@@ -61,10 +61,25 @@ function sampleItemsFromArray(array = [], quantity = 1) {
  */
 const pad = (num, places) => String(num).padStart(places, '0')
 
+/**
+ * 
+ * @param {*} sentense 
+ * @param {*} mapObj 
+ */
+function replaceAll(sentence, mapObj){
+  return mapObj.reduce((prev, current) =>
+    `${prev}`.replace(
+      new RegExp(Object.keys(current)[0], 'g'),
+      current[Object.keys(current)[0]]),
+      sentence
+    )
+}
+
 module.exports = {
   sampleItemsFromArray,
   randomBetween,
   randomItem,
+  replaceAll,
   flipCoin,
   tryWin,
   pad
