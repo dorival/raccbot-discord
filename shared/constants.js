@@ -1,0 +1,42 @@
+const SPECIES = [
+  'Wolf',
+  'Dragon',
+  'Fox',
+  'Dog',
+  'Cat',
+  'Tiger',
+  'Lion',
+  'Deer',
+  'Hyena',
+  'Rabbit',
+  'Raccoon',
+  'Bear',
+  'Otter',
+  'Snow Leopard',
+  'Reptile',
+  'Pokemon',
+  'Digimon',
+  'Skunk',
+  'Bull',
+  'Horse',
+  'Phoenix',
+  'Sergal',
+  'Goat',
+  'Cow',
+  'Mouse',
+  'Unicorn',
+  'Shark',
+  'Crow',
+  'Kangaroo',
+  'Gryphon',
+  'Snake',
+  'Primate',
+  'Raven',
+  'Squirrel',
+  'Dinosaur',
+  'Monkey'
+]
+
+module.exports = {
+  SPECIES
+}
