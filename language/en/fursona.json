@@ -1,4 +1,5 @@
 {
+  "output": "My name is %name% the %title% %species%. I'm a %species% %whoAmI%, %past%. My main color is %color1% with %color2% accents! Some of the things I like are %hobbyList% and %myGoalsHere% %emoji%",
   "winged": "Winged",
   "taur": "Taur",
   "were": "Were",

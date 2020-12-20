@@ -2,8 +2,9 @@ const contentGlobal = require("../language/en/global.json");
 const content = require("../language/en/fursona.json");
 const {
   sampleItemsFromArray,
-  randomItem,
   randomBetween,
+  randomItem,
+  replaceAll,
   tryWin,
   pad
 } = require("../shared/utils");
@@ -46,8 +47,21 @@ module.exports = {
     let hobby = sampleItemsFromArray(content.hobbies, 4);
     let pictureSeed = pad(randomBetween(1, 99999), 5);
 
+    const mapping = [
+      { "%name%": name },
+      { "%title%": title },
+      { "%species%": fursonaSpecies },
+      { "%whoAmI%": whoAmI },
+      { "%past%": past },
+      { "%color1%": randomItem(contentGlobal.colors) },
+      { "%color2%": randomItem(contentGlobal.colors) },
+      { "%hobbyList%": hobby.join(', ') },
+      { "%myGoalsHere%": goals },
+      { "%emoji%": randomItem(contentGlobal.expressions) }
+    ];
+
     msg.reply(
-      `My name is ${name} the ${title} ${fursonaSpecies}. I'm a ${fursonaSpecies} ${whoAmI}, ${past}. My main color is ${randomItem(contentGlobal.colors)} with ${randomItem(contentGlobal.colors)} accents! Some of the things I like are ${hobby.join(', ')} and ${goals} ${randomItem(contentGlobal.expressions)}`,
+      replaceAll(content.output, mapping),
       { 
         files: [`https://thisfursonadoesnotexist.com/v2/jpgs/seed${pictureSeed}.jpg`] 
       }
