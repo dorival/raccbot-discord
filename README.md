@@ -9,7 +9,7 @@ Type `!fursona` in any channel, and it will alone generate a fursona, with intro
 
 
 ## Rolling Dice 🎲
-Type `!fursona` in any channel to roll a dice. You will get a reply with the side it lands.
+Type `!roll` in any channel to roll a dice. You will get a reply with the side it lands.
 
 **Command:** `!roll <param1:sides>`
 
