@@ -1,4 +1,6 @@
 const random = require('random');
+const Prando = require('prando');
+const moment = require('moment');
 const _ = require('underscore');
 
 /**
@@ -6,6 +8,22 @@ const _ = require('underscore');
  */
 function randomBetween(minimum, maximum) {  
   return random.int(min = minimum, max = maximum);
+}
+
+function predictableRandomBetween(minimum = 0, maximum = 100) {
+  var date = moment();
+  date.set({
+    hour: 0,
+    minute: 0,
+    second: 0,
+    millisecond: 0
+  });
+  
+  const prnd = new Prando(date.valueOf());
+  const value = prnd.nextInt(minimum, maximum)
+  prnd.reset();
+
+  return value;
 }
 
 /**
@@ -81,6 +99,7 @@ function replaceAll(sentence, mapObj){
 }
 
 module.exports = {
+  predictableRandomBetween,
   sampleItemsFromArray,
   randomBetween,
   randomItem,
