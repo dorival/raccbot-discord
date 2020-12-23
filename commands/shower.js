@@ -10,6 +10,6 @@ module.exports = {
     const thoughts = content.thoughts;
     const showerThought = thoughts[randomBetween(0, thoughts.length - 1)];
 
-    msg.channel.send(`🚿 **Shower Thoughts**\n\n>>> ${showerThought}`)
+    msg.channel.send(`🚿 **Shower Thoughts**\n>>> ${showerThought}`)
   }
 };
