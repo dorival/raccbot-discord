@@ -38,9 +38,9 @@ jobs:
             wget -P ./ https://github.com/dorival/raccbot-discord/archive/${{ github.ref }}.tar.gz
             tar -C ./ -xvf ${{ github.ref }}.tar.gz
             rm ${{ github.ref }}.tar.gz
-            pm2 delete raccbot-discord
+            pm2 delete raccbot-discord 2> /dev/null || true
             rm -r raccbot-discord/
-            mv ./raccbot-discord-${{ github.ref }} ./raccbot-discord
+            mv ./raccbot-discord-* ./raccbot-discord
             cd raccbot-discord
             echo 'TOKEN=${{ secrets.RACCBOT_PROD_DISCORD_TOKEN }}' > ./.env
             npm i
