@@ -7,6 +7,19 @@ Type `!fursona` in any channel, and it will alone generate a fursona, with intro
 
 **Arguments in order:** *This command has no arguments*.
 
+## Wisdom of Today
+Type `!wisdom` in any channel, and it will post a thoughtfull message for you. Hopefully. It will change every day, so multiple calls to this command will return the same wisdom of the day, because well, the day isn't over, don't be rushy.
+
+**Command:** `!wisdom`
+
+**Arguments in order:** *This command has no arguments*.
+
+## Shower thoughts 🚿
+Type `!shower` in any channel, and it will post a random thought. Those thoughts came from the IRC era, so you might see good old modem jokes and old Windows anecdotes, since everyone in IRC was a nerd.
+
+**Command:** `!shower`
+
+**Arguments in order:** *This command has no arguments*.
 
 ## Rolling Dice 🎲
 Type `!roll` in any channel to roll a dice. You will get a reply with the side it lands.
