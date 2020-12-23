@@ -25,3 +25,23 @@ jobs:
             Refer to README.md for details.
           draft: false
           prerelease: false
+
+      - name: refresh latest version
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.RACCBOT_PROD_AWS_HOST }}
+          username: ${{ secrets.RACCBOT_PROD_AWS_USER }}
+          key: ${{ secrets.RACCBOT_PROD_AWS_KEY }}
+          port: ${{ secrets.RACCBOT_PROD_AWS_PORT }}
+          script: |
+            cd bot
+            wget -P ./ https://github.com/dorival/raccbot-discord/archive/${{ github.ref }}.tar.gz
+            tar -C ./ -xvf ${{ github.ref }}.tar.gz
+            rm ${{ github.ref }}.tar.gz
+            pm2 delete raccbot-discord
+            rm -r raccbot-discord/
+            mv ./raccbot-discord-${{ github.ref }} ./raccbot-discord
+            cd raccbot-discord
+            echo 'TOKEN=${{ secrets.RACCBOT_PROD_DISCORD_TOKEN }}' > ./.env
+            npm i
+            pm2 start index.js --name raccbot-discord
