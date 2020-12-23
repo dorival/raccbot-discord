@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const { randomBetween } = require("../shared/utils");
 const content = require("../language/en/quotes.json");
 
