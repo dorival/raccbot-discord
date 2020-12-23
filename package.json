@@ -1,10 +1,10 @@
 {
   "name": "raccbot-discord",
-  "version": "1.0.0",
-  "description": "A chaoctic Discord bot full of raccoon energy.",
+  "version": "1.1.0",
+  "description": "A chaotic Discord bot full of raccoon energy.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "Dorival Neto",
   "license": "MIT",
