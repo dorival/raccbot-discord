@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const { randomBetween } = require("../shared/utils");
 const content = require("../language/en/quotes.json");
 
@@ -10,6 +9,6 @@ module.exports = {
     const thoughts = content.thoughts;
     const showerThought = thoughts[randomBetween(0, thoughts.length - 1)];
 
-    msg.channel.send(`🚿 **Shower Thoughts**\n\n>>> ${showerThought}`)
+    msg.channel.send(`🚿 **Shower Thoughts**\n>>> ${showerThought}`)
   }
 };
