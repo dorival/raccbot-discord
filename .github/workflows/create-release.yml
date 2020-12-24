@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set Variables
+        run: |
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+        env: |
+          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -26,7 +33,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: refresh latest version
+      - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.RACCBOT_PROD_AWS_HOST }}
@@ -35,9 +42,9 @@ jobs:
           port: ${{ secrets.RACCBOT_PROD_AWS_PORT }}
           script: |
             cd bot
-            wget -P ./ https://github.com/dorival/raccbot-discord/archive/${{ github.ref }}.tar.gz
-            tar -C ./ -xvf ${{ github.ref }}.tar.gz
-            rm ${{ github.ref }}.tar.gz
+            wget -P ./ https://github.com/dorival/raccbot-discord/archive/${{ SOURCE_TAG }}.tar.gz
+            tar -C ./ -xvf ${{ SOURCE_TAG }}.tar.gz
+            rm ${{ SOURCE_TAG }}.tar.gz
             pm2 delete raccbot-discord 2> /dev/null || true
             rm -r raccbot-discord/
             mv ./raccbot-discord-* ./raccbot-discord
